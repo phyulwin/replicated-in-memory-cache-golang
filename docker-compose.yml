@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  node1:
+    image: rc-node
+    command: ["-addr=:8081", "-peers=http://node2:8082,http://node3:8083"]
+    ports: ["8081:8081"]
+  node2:
+    image: rc-node
+    command: ["-addr=:8082", "-peers=http://node1:8081,http://node3:8083"]
+    ports: ["8082:8082"]
+  node3:
+    image: rc-node
+    command: ["-addr=:8083", "-peers=http://node1:8081,http://node2:8082"]
+    ports: ["8083:8083"]
